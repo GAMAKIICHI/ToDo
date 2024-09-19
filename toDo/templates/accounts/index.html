@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Log in</title>
+        <meta name="description" content="Log in Page">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href=" {% static 'accounts/css/login.css'%}">
+    </head>
+    <body>
+        <main>
+            <div id="login-image-wrapper">
+                <img src="{% static 'accounts/img/list.png'%}">
+                <a href="https://www.flaticon.com/free-icons/to-do-list" title="to do list icons">Icons created by Freepik - Flaticon</a>
+            </div>
+            <div id="login-input-wrapper">
+                <section>
+                    <h1>Login</h1>
+                </section>
+                <input type="text" name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+                <input type="button" name="login-btn" value="Login">
+                <p>Don't have an account yet? <a href="">Sign up</a></p>
+            </div>
+        </main>
+        <script src="" async defer></script>
+    </body>
+</html>
