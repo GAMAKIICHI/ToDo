@@ -1,8 +1,8 @@
 from django.urls import path
-from . import views
+from .views import CustomLoginView
 
 app_name = "accounts"
 urlpatterns = [
-    #ex: /login/
-    path("", views.index, name="index"),
+    #ex: /accounts/login/
+    path('login/', CustomLoginView.as_view(), name='login'),
 ]
