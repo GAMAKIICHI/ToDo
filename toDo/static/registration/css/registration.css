@@ -37,7 +37,7 @@ main
 
 }
 
-#login-image-wrapper
+#image-wrapper
 {
     min-width: 50%;
 
@@ -49,7 +49,7 @@ main
     background-color: var(--main-color);
 }
 
-#login-image-wrapper img
+#image-wrapper img
 {
    max-width: 11rem;
    margin-bottom: 1rem;
@@ -57,14 +57,14 @@ main
 }
 
 
-#login-image-wrapper a
+#image-wrapper a
 {
     font-size: 0.5rem;
     text-wrap: nowrap;
     text-decoration: none;
 }
 
-#login-input-wrapper
+#input-wrapper
 {
     width: 100%;
     display: flex;
@@ -78,7 +78,7 @@ form
     max-width: min-content;
 }
 
-#login-input-wrapper input
+#input-wrapper input
 {
     margin: 1rem 0;
     width: 15rem;
@@ -90,25 +90,26 @@ form
     background-color: var(--white-color);
 }
 
-#login-input-wrapper input[type=submit]
+#input-wrapper input[type=submit]
 {
     background-color: var(--main-color);
     padding: 0.5rem 0 0.5rem 0;
     color: var(--white-color);
+    cursor: pointer;
 }
 
-#login-input-wrapper input[type=submit]:hover
+#input-wrapper input[type=submit]:hover
 {
     background-color: var(--highlight-color);
 }
 
-#login-input-wrapper p
+#input-wrapper p
 {
     font-size: .8rem;
     color: black;
 }
 
-#login-input-wrapper section
+#input-wrapper section
 {
     align-self: flex-end;
     position: absolute;
@@ -120,4 +121,9 @@ form
     height: 4rem;
     background-color: var(--main-color);
     border-bottom-left-radius: 3rem;
+}
+
+#input-title
+{
+    color: var(--white-color);
 }
