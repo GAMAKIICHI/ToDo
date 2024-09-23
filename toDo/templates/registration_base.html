@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'registration/css/registration.css'%}">
+{% endblock %}
+
+{% block main %}
+    <div id="image-wrapper">
+        <img src="{% static 'registration/img/list.png'%}">
+        <a href="https://www.flaticon.com/free-icons/to-do-list" title="to do list icons">Icons created by Freepik - Flaticon</a>
+    </div>
+    <div id="input-wrapper">
+        <section>
+            <h1 id="input-title">{% block title %}{% endblock%}</h1>
+        </section>
+        <form action="" method="post">
+            {% csrf_token %}
+            {% block formContent %}{% endblock %}
+            <input type="submit" name="submit-btn" value="{%block submitValue%}{%endblock%}">
+        </form>
+        {%block redirect%}{%endblock%}
+    </div>
+{% endblock %}
