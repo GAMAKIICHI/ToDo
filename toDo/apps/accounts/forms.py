@@ -1,13 +1,14 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+
+def customAttr(values: dict):
+    return forms.CharField(widget = forms.TextInput(attrs=values))
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(widget = forms.TextInput(attrs={
-        'placeholder':'Username'
-    }))
+    username = customAttr({'placeholder':'Username'})
+    password = customAttr({'placeholder':'Password', 'type':'password'})
 
-    password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder':'Password'
-    }))
-    
-
+class SignUpForm(UserCreationForm):
+    username = customAttr({'placeholder':'Username'})
+    password1 = customAttr({'placeholder':'Password', 'type':'password'})
+    password2 = customAttr({'placeholder':'Verify Password', 'type':'password'})
