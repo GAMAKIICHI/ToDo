@@ -9,6 +9,6 @@
 
 {%block submitValue%}Login{%endblock%}
 
-{%block redirect%}
-<p>Don't have an account yet? <a href="">Sign up</a></p>
+{%block accountRedirect%}
+<p>Don't have an account yet? <a href="{% url 'accounts:signup' %}">Sign up</a></p>
 {%endblock%}

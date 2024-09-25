@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import django.views
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -26,7 +27,6 @@ SECRET_KEY = 'django-insecure-wr5(%$ibs%&wmw=_=2$6g%$^v@0y7@wh)r4sh(hz=_r0z@pg-g
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -127,3 +127,38 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters":{
+        "standard":{
+            "format": "%(asctime)s %(levelname)s %(name)s %(message)s"
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "formatter": "standard",
+            "filters": [],
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "WARNING",
+    },
+    "logger":{
+        logger_name:{
+            "level": "WARNING",
+            "propogate": True,
+        } for logger_name in ("django", "django.request", "django.db.backends", "django.template", "core", "django.views")
+    },
+    "root":{
+        "level": "DEBUG",
+        "handlers": ["console"],
+    }
+}
+
+#This is where users will be redirected when logging in
+LOGIN_REDIRECT_URL = "/tasks/"
