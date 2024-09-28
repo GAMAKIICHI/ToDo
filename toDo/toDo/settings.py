@@ -161,4 +161,4 @@ LOGGING = {
 }
 
 #This is where users will be redirected when logging in
-LOGIN_REDIRECT_URL = "/tasks/"
+LOGIN_REDIRECT_URL = "/tasks/dashboard"

@@ -2,14 +2,18 @@
 
 {% block title %}Sign Up{% endblock %}
 
-{% block formContent %}
-    {{form.username}}
-    {{form.password1}}
-    {{form.password2}}
+{% block formError%}
+    {%if form.errors%}
+        {%for field in form%}
+            {%for error in field.errors%}
+                {{error}}
+            {%endfor%}
+        {%endfor%}
+    {%endif%}
 {% endblock %}
 
 {%block submitValue%}Sign Up{%endblock%}
 
 {%block accountRedirect%}
-<p>Already have an account? <a href="{% url 'accounts:login'%}">Login</a></p>
+<p id="account-redirect">Already have an account? <a href="{% url 'accounts:login'%}">Login</a></p>
 {%endblock%}

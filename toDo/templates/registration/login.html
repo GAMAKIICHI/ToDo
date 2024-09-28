@@ -2,13 +2,14 @@
 
 {% block title %}Login{% endblock %}
 
-{% block formContent %}
-    {{form.username}}
-    {{form.password}}
-{% endblock %}
+{% block formError%}
+    {%for error in form.non_field_errors%}
+        {{error}}
+    {%endfor%}
+{%endblock%}
 
 {%block submitValue%}Login{%endblock%}
 
 {%block accountRedirect%}
-<p>Don't have an account yet? <a href="{% url 'accounts:signup' %}">Sign up</a></p>
+<p id="account-redirect">Don't have an account yet? <a href="{% url 'accounts:signup' %}">Sign up</a></p>
 {%endblock%}
