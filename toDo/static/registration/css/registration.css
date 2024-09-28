@@ -69,18 +69,51 @@ main
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
-form
+#input-title
+{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+
+    color: var(--white-color);
+}
+
+#input-title h1
+{
+    width: 65%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--main-color);
+    border-bottom-left-radius: 3rem;
+}
+
+#error-message
+{
+    width: 100%;
+    color: red;
+    font-size: 0.75rem;
+    min-height: 2.25rem;
+}
+
+#input-form
 {
     max-width: min-content;
+    flex-grow: 2;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
+
 
 #input-wrapper input
 {
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     width: 15rem;
     font-size: 1rem;
     border-radius: 10px;
@@ -101,29 +134,13 @@ form
 #input-wrapper input[type=submit]:hover
 {
     background-color: var(--highlight-color);
-}
-
-#input-wrapper p
-{
-    font-size: .8rem;
     color: black;
 }
 
-#input-wrapper section
+#input-wrapper #account-redirect
 {
-    align-self: flex-end;
-    position: absolute;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 8rem;
-    height: 4rem;
-    background-color: var(--main-color);
-    border-bottom-left-radius: 3rem;
-}
-
-#input-title
-{
-    color: var(--white-color);
+    font-size: .8rem;
+    color: black;
+    margin-bottom: 1rem;
+    text-align: center;
 }

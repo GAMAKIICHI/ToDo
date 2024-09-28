@@ -11,14 +11,27 @@
         <a href="https://www.flaticon.com/free-icons/to-do-list" title="to do list icons">Icons created by Freepik - Flaticon</a>
     </div>
     <div id="input-wrapper">
-        <section>
-            <h1 id="input-title">{% block title %}{% endblock%}</h1>
+        <section id="input-title">
+            <h1>{% block title %}{% endblock%}</h1>
         </section>
-        <form action="" method="post">
-            {% csrf_token %}
-            {% block formContent %}{% endblock %}
-            <input type="submit" name="submit-btn" value="{%block submitValue%}{%endblock%}">
-        </form>
-        {%block accountRedirect%}{%endblock%}
+        <section id="input-form">
+            <section id="message">
+                
+            </section>
+            <form action="" method="post">
+                {% csrf_token %}
+                <section id="error-message">
+                    {% block formError%}{% endblock %}
+                </section>
+                
+                {%if form%}
+                    {%for field in form%}
+                        {{field}}
+                    {%endfor%}
+                {%endif%}
+                <input type="submit" name="submit-btn" value="{%block submitValue%}{%endblock%}">
+            </form>
+            {%block accountRedirect%}{%endblock%}
+        </section>
     </div>
 {% endblock %}
