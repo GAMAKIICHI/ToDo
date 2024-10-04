@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'tasks/css/dashboard.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/base.css'%}">
+{% endblock %}
+
+{% block main%}
+    <aside id="left">
+        <div id="welcome">
+            <h3>Welcome</h3>
+            <h3>Username</h3>
+        </div>
+        <hr>
+        <nav>
+            <ul>
+                <li>
+                    <h4>Today Tasks</h4>
+                    <ul>
+                        <li>Task1</li>
+                        <li>Task2</li>
+                        <li>Task3</li>
+                    </ul>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <h4>Scheduled Tasks</h4>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <div id="right">
+        <div id="next-task">
+            <div id="title">
+                <h1>Today's Tasks</h1>
+                <h2>August 31, 2000</h2>
+            </div>
+            <section>
+                <div id="dots">
+                    <span class="dot" style="background-color: blue"></span>
+                    <span class="dot" style="background-color: pink"></span>
+                    <span class="dot" style="background-color: yellow"></span>
+                </div>
+                <div id="input-form">
+                    <form>
+                        <input type="text" placeholder="What is your next task?">
+                    </form>
+                </div>
+                <div id="time">
+                    <p>&#128337;</p>
+                </div>
+            </section>
+        </div>
+        <div id="task-list">
+            <section class="task">
+                <div id="dots">
+                    <span class="dot" style="background-color: blue"></span>
+                </div>
+                <div id="task-text">
+                    <p>Take out the trash</p>
+                </div>
+                <div id="time">
+                    <p>12:59 pm</p>
+                </div>
+                <div id="completion">
+                    <input type="checkbox" checked id="checkbox" />
+                    <label for="checkbox"></label>
+                  </div>
+            </section>
+            <section class="task">
+                <div id="dots">
+                    <span class="dot" style="background-color: blue"></span>
+                </div>
+                <div id="task-text">
+                    <p>Take out the trash</p>
+                </div>
+                <div id="time">
+                    <p>12:59 pm</p>
+                </div>
+                <div id="completion">
+                    <input type="checkbox" checked id="checkbox" />
+                    <label for="checkbox"></label>
+                  </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}
