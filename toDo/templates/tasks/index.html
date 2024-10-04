@@ -1,9 +1,0 @@
-{%if latest_task%}
-    <ul>
-        {% for task in latest_task%}
-            <li><a href="{% url 'tasks:detail' task.id %}">{{task.title}}</a></li>
-        {% endfor %}
-    </ul>
-{%else%}
-    <p>No Tasks are available.</p>
-{%endif%}

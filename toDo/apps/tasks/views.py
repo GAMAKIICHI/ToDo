@@ -6,7 +6,7 @@ def index(request):
 
     context = {"latest_task": latest_task}
 
-    return render(request, "tasks/index.html", context)
+    return render(request, "tasks/dashboard.html", context)
 
 def detail(request, task_id):
 
