@@ -1,180 +1,148 @@
-body{
-    background-color: var(--main-color);
-}
-
 main{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-
-    display: flex;
-    width: 50%;
-    height: 60%;
-
-    border-radius: 1.5rem;
-    background-color: var(--white-color);
-
-    padding: .5rem;
-    box-shadow: 0px 5px 15px -1px rgba(0,0,0,0.75);
+    height: 35rem;
 }
 
-aside{
+#welcome-title{
+    padding: 1rem 0;
+}
+
+#welcome-title h3{
+    text-transform: capitalize;
+}
+
+#task-links ul{
+    padding: 0;
+    user-select: none;
+}
+
+#today h4{
+    padding-top: 1rem;
+    font-size: 21px;
+}
+
+#task-links li{
+    list-style: none;
+}
+
+.link{
+    padding: .5rem 0;
+}
+
+.link a{
+    text-decoration: none;
+}
+
+.link a:hover, #sign-out-btn:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.link a:visited{
+    color: inherit;
+}
+
+.scheduled, #sign-out-btn{
+    font-weight: 600;
+}
+
+#sign-out-btn{
+    border: none;
+    background-color: inherit;
+    font-size: 1rem;
+    padding: 0;
+}
+
+#info-title{
+    padding: 2rem 0;
+    text-align: center;
+}
+
+#error{
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: var(--error-color);
+    height: .5rem;
+}
+
+#next-task{
     display: flex;
     align-items: center;
-    width: 25%;
-    flex-direction: column;
+    width: 90%;
+    height: 3.5rem;
+    border-radius: 1rem;
+    background-color: var(--white-color);
+    margin-bottom: 2rem;
+    padding: .3rem;
 }
 
-#welcome{
-    text-align: center;
-    height: 15%;
-    margin-top: 1rem;
-}
-
-hr{
-    width: 80%;
-}
-
-ul{
-    list-style-type: none;
-    padding: 0;
+#dots{
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
 }
 
-li{
-    margin: 0.5rem 0;
+#dots input[type="radio"]{
+    display: none;
+}
+
+
+.dot:nth-of-type(2){
+    margin: 0 .3rem;
 }
 
 
 .dot{
+    display: block;
     height: 1rem;
     width: 1rem;
-    border-radius: 50%;
-    display: inline-block;
-    margin: 0 .2rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+#next{
+    border: none;
+    background-color: transparent;
+    height: 2rem;
+    flex-grow: 2;
+    margin-left: 1rem;
+}
+
+#scheduled-time{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#add-task{
+    border: none;
+    margin-left: 1rem;
+    background-color: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#task-list{
+    width: 80%;
+    display: flex;
+    justify-content: center;
 }
 
 .task{
     display: flex;
-    flex-direction: row;
-}
-
-div{
-    width: 100%;
-}
-
-#right{
-    background-color: var(--main-color);
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 75%;
-}
-
-#title, #next-task{
-    width: 75%;
-}
-
-#title{
-    margin-top: 1rem;
-    text-overflow: ellipsis;
-    text-wrap: nowrap;
-    overflow: hidden;
-}
-
-#next-task{
-    margin: 2rem 0;
-    height: 30%;
-}
-
-#task-list{
-    width: 70%;
-    height: 70%;
-    overflow-y: auto;
-}
-
-/*Scroll bar styling*/
-::-webkit-scrollbar{
-    background: var(--white-color);
-    width: .5rem;
-    
-}
-
-::-webkit-scrollbar-thumb{
-    
-    background-color: var(--alternate-dark-color);
-}
-
-#next-task section, #task-list section{
+    width: 80%;
+    height: 3rem;
     background-color: var(--white-color);
     border-radius: 1rem;
-    height: 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin: .5rem;
-    padding: .2rem;
+    padding: .3rem;
 }
 
-#task-list section{
-    height: 3rem;
-    margin: .8rem;
+.task-title{
+    width: 80%;
+    margin-left: 1rem;
 }
 
-#dots{
-    width: 10rem;
-    white-space: nowrap;
+.completion-time{
+    text-wrap: nowrap;
+    margin: 0 .3rem;
 }
 
-#task-list #dots{
-    width: 3rem;
-}
-
-#next-task input, #task-text{
-    width: 100%;
-    border: none;
-}
-
-#next-task input{
-    font-size: 1rem;
-}
-
-#task-text{
-    font-size: .9rem;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-#next-task #time{
-    width: 5rem;
-    float: right;
-}
-
-#task-list #time{
-    width: 8rem;
-}
-
-#next-task #time p{
-    float: right;
-}
-
-#time p{
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-#task-list #completion{
-    width: 5rem;
-}
-
-#task-list #completion input{
-    float: right;
-}

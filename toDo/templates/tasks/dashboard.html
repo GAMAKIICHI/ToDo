@@ -1,89 +1,73 @@
-{% extends "base.html" %}
+{% extends "base/dashboard_base.html" %}
 {% load static %}
 
-{% block stylesheet %}
-    <link rel="stylesheet" type="text/css" href="{% static 'tasks/css/dashboard.css'%}">
-    <link rel="stylesheet" type="text/css" href="{% static 'base/css/base.css'%}">
+{% block morestyles%}
+<link rel="stylesheet" type="text/css" href="{% static 'tasks/css/dashboard.css'%}">
+<script type="text/javascript" src="{% static 'tasks/js/urgencySelector.js'%}"></script>
 {% endblock %}
 
-{% block main%}
-    <aside id="left">
-        <div id="welcome">
-            <h3>Welcome</h3>
-            <h3>Username</h3>
-        </div>
-        <hr>
-        <nav>
-            <ul>
-                <li>
-                    <h4>Today Tasks</h4>
-                    <ul>
-                        <li>Task1</li>
-                        <li>Task2</li>
-                        <li>Task3</li>
-                    </ul>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <h4>Scheduled Tasks</h4>
-                </li>
-            </ul>
-        </nav>
-    </aside>
-    <div id="right">
-        <div id="next-task">
-            <div id="title">
-                <h1>Today's Tasks</h1>
-                <h2>August 31, 2000</h2>
-            </div>
-            <section>
-                <div id="dots">
-                    <span class="dot" style="background-color: blue"></span>
-                    <span class="dot" style="background-color: pink"></span>
-                    <span class="dot" style="background-color: yellow"></span>
-                </div>
-                <div id="input-form">
-                    <form>
-                        <input type="text" placeholder="What is your next task?">
+{% block left %}
+    <div id="welcome-title">
+        <h3>Welcome</h3>
+        <h3>{{request.user.username}}</h3>
+    </div>
+    <hr id="sidebar-break">
+    <nav id="task-links">
+        <ul id="today">
+            <li>
+                <h4>Today Tasks</h4>
+                <ul>
+                    <li class="link"><a href="">Task1</a></li>
+                    <li class="link"><a href="">Task2</a></li>
+                    <li class="link"><a href="">Task3</a></li>
+                    <li class="link scheduled"><a href="">Scheduled Tasks</a></li>
+                    <form method="post" action="{% url 'accounts:logout'%}">
+                        {%csrf_token%}
+                        <input id="sign-out-btn" type="submit" value="Sign Out">
                     </form>
-                </div>
-                <div id="time">
-                    <p>&#128337;</p>
-                </div>
-            </section>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block right %}
+    <div id="info-title">
+        <h1>Today's Tasks</h1>
+        <h2>{% now "M d Y"%}</h2>
+    </div>
+    <div>
+        <h3 id="error"></h3>
+    </div>
+    <form id="next-task" method="post">
+        {% csrf_token %}
+        <div id="dots">
+            <input type="radio" id="low" name="urgency"/>
+            <label class="dot" for="low"></label>
+            <input type="radio" id="medium" name="urgency"/>
+            <label class="dot" for="medium"></label>
+            <input type="radio" id="high" name="urgency"/>
+            <label class="dot" for="high"></label>
         </div>
-        <div id="task-list">
-            <section class="task">
-                <div id="dots">
-                    <span class="dot" style="background-color: blue"></span>
-                </div>
-                <div id="task-text">
-                    <p>Take out the trash</p>
-                </div>
-                <div id="time">
-                    <p>12:59 pm</p>
-                </div>
-                <div id="completion">
-                    <input type="checkbox" checked id="checkbox" />
-                    <label for="checkbox"></label>
-                  </div>
-            </section>
-            <section class="task">
-                <div id="dots">
-                    <span class="dot" style="background-color: blue"></span>
-                </div>
-                <div id="task-text">
-                    <p>Take out the trash</p>
-                </div>
-                <div id="time">
-                    <p>12:59 pm</p>
-                </div>
-                <div id="completion">
-                    <input type="checkbox" checked id="checkbox" />
-                    <label for="checkbox"></label>
-                  </div>
-            </section>
+        <input id="next" type="text" name="title" placeholder="What is your next task?"/>
+        <input id="scheduled-time" type="datetime-local" name="deadline"/>
+        <input id="add-task" type="submit" value="+"/>
+    </form>
+    <div id="task-list">
+        <div class="task">
+            <div class="urgency">
+                <span class="dot"></span>
+            </div>
+            <div class="task-title">
+                <p>{{tasks.title}}</p>
+            </div>
+            <div class="completion-time">
+                <p>{{tasks.deadline}}</p>
+            </div>
+            <div class="completion">
+                <input type="checkbox" checked id="checkbox" />
+                <label for="checkbox"></label>
+            </div>
         </div>
     </div>
 {% endblock %}
