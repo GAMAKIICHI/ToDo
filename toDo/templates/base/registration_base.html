@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base/base.html" %}
 {% load static %}
 
 {% block stylesheet %}
@@ -19,7 +19,7 @@
             <section id="message">
                 
             </section>
-            <form action="" method="post">
+            <form action="{%block redirect%}{%endblock%}" method="post">
                 {% csrf_token %}
                 <section id="error-message">
                     {% block formError%}{% endblock %}

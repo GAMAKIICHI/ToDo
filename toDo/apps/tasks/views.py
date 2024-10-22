@@ -1,15 +1,32 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Task
+from django.contrib.auth.decorators import login_required
+from apps.tasks.models import TaskForm
+from apps.tasks.models import TaskModel
+import logging.config
 
+logger = logging.getLogger("DEBUG")
+
+@login_required(login_url='/accounts/login')
 def index(request):
-    latest_task = Task.objects.order_by("-pub_date")[:5]
 
-    context = {"latest_task": latest_task}
+    current_user = request.user
 
-    return render(request, "tasks/dashboard.html", context)
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.user = current_user
+            form.save()
+    else:
+        form = TaskForm()
+
+    tasks = get_object_or_404(TaskModel,pk=current_user.id)
+
+    return render(request, "tasks/dashboard.html", {"tasks": tasks})
 
 def detail(request, task_id):
 
-    task = get_object_or_404(Task, pk=task_id)
+    # task = get_object_or_404(TaskForm, pk=task_id)
 
-    return render(request, "tasks/detail.html", {"task": task})
+    return render(request, "tasks/detail.html")

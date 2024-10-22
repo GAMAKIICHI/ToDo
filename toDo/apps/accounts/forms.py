@@ -8,6 +8,9 @@ class LoginForm(AuthenticationForm):
     username = customAttr({'placeholder':'Username'})
     password = customAttr({'placeholder':'Password', 'type':'password'})
 
+class LogoutForm():
+    pass
+
 class SignUpForm(UserCreationForm):
     username = customAttr({'placeholder':'Username'})
     password1 = customAttr({'placeholder':'Password', 'type':'password'})

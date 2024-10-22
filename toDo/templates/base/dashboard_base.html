@@ -1,0 +1,17 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/dash.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/base.css'%}">
+    {% block morestyles %}{% endblock %}
+{% endblock %}
+
+{% block main%}
+    <aside id="left">
+        {% block left %}{% endblock %}
+    </aside>
+    <div id="right">
+        {% block right %}{% endblock %}
+    </div>
+{% endblock %}
