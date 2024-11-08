@@ -17,10 +17,14 @@
             <li>
                 <h4>Today Tasks</h4>
                 <ul>
-                    <li class="link"><a href="">Task1</a></li>
-                    <li class="link"><a href="">Task2</a></li>
-                    <li class="link"><a href="">Task3</a></li>
+                    {% for task in tasks %}
+                        {% if forloop.counter0 < 3 %}
+                            <li class="link"><a href="">{{task.title}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    <li class="link see-more"><a href="">See More...</a></li>
                     <li class="link scheduled"><a href="">Scheduled Tasks</a></li>
+                    <li class="link completed"><a href="">Completed Tasks</a></li>
                     <form method="post" action="{% url 'accounts:logout'%}">
                         {%csrf_token%}
                         <input id="sign-out-btn" type="submit" value="Sign Out">
@@ -36,17 +40,25 @@
         <h1>Today's Tasks</h1>
         <h2>{% now "M d Y"%}</h2>
     </div>
-    <div>
-        <h3 id="error"></h3>
+    <div id="errors-container">
+        {% if form.errors %}
+            {% for field, errors in form.errors.items %}
+                {% if forloop.counter0 == 0 %}
+                    {{errors}}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     </div>
     <form id="next-task" method="post">
         {% csrf_token %}
         <div id="dots">
-            <input type="radio" id="low" name="urgency"/>
+            <input type="radio" id="low" name="urgency" value="L"/>
             <label class="dot" for="low"></label>
-            <input type="radio" id="medium" name="urgency"/>
+
+            <input type="radio" id="medium" name="urgency" value="M"/>
             <label class="dot" for="medium"></label>
-            <input type="radio" id="high" name="urgency"/>
+
+            <input type="radio" id="high" name="urgency" value="H"/>
             <label class="dot" for="high"></label>
         </div>
         <input id="next" type="text" name="title" placeholder="What is your next task?"/>
@@ -54,20 +66,28 @@
         <input id="add-task" type="submit" value="+"/>
     </form>
     <div id="task-list">
-        <div class="task">
-            <div class="urgency">
-                <span class="dot"></span>
-            </div>
-            <div class="task-title">
-                <p>{{tasks.title}}</p>
-            </div>
-            <div class="completion-time">
-                <p>{{tasks.deadline}}</p>
-            </div>
-            <div class="completion">
-                <input type="checkbox" checked id="checkbox" />
-                <label for="checkbox"></label>
-            </div>
-        </div>
+        {% for task in tasks %}
+            {% if task.completion_status != True %}
+                <div class="task">
+                    <div class="urgency">
+                        <span class="dot dot-{{task.urgency}}"></span>
+                    </div>
+                    <div class="task-title">
+                        <p>{{task.title}}</p>
+                    </div>
+                    <div class="completion-time">
+                        <p>{{task.deadline|date:"m/d | H:i A"}}</p>
+                    </div>
+                    <form class="completion" method="get">
+                        <input type="checkbox" id="checkbox-{{task.id}}" name="complete-task" value="{{task.id}}" onchange="this.form.submit()" {% if task.completion_status %} checked {% endif %}/>
+                        <label for="checkbox-{{task.id}}"></label>
+                    </form>
+                    <form class="delete" method="get">
+                        <input type="hidden" id="delete-{{task.id}}" name="delete-task" value="{{task.id}}">
+                        <input type="submit" id="delete-btn-{{task.id}}" value="X"> 
+                    </form>
+                </div>
+            {% endif %}
+        {% endfor %}
     </div>
 {% endblock %}
