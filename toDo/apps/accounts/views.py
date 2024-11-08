@@ -6,6 +6,7 @@ from .forms import LoginForm, SignUpForm
 import logging.config
 from django.conf import settings
 from django.contrib.auth import logout
+from django.urls import reverse
 
 logger = logging.getLogger("DEBUG")
 

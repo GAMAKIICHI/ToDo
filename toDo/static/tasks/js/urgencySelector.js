@@ -42,9 +42,13 @@ document.addEventListener("DOMContentLoaded", () =>{
     const dotToggleMed = document.querySelector("#medium");
     const dotToggleHigh = document.querySelector("#high");
 
-    const low = new Dot(dotToggleLow, "rgba(0, 255, 0)", "rgba(170, 248, 170)");
-    const med = new Dot(dotToggleMed, "rgba(255, 255, 0)", "rgba(240, 240, 80)");
-    const high = new Dot(dotToggleHigh, "rgba(255, 0, 0)", "rgba(255, 100, 100)");
+    const green = ["rgba(0, 255, 0)", "rgba(170, 248, 170)"];
+    const yellow = ["rgba(255, 255, 0)", "rgba(240, 240, 80)"];
+    const red = ["rgba(255, 0, 0)", "rgba(255, 100, 100)"];
+
+    const low = new Dot(dotToggleLow, green[0], green[1]);
+    const med = new Dot(dotToggleMed, yellow[0], yellow[1]);
+    const high = new Dot(dotToggleHigh, red[0], red[1]);
 
     /*this is so color gets applied to dot*/
     low.untoggle();
@@ -67,6 +71,26 @@ document.addEventListener("DOMContentLoaded", () =>{
         med.untoggle();
         high.toggle();
     });
+
+    /*Changes the color of the tasks urgency*/
+    const taskDots = document.querySelectorAll("span.dot");
+
+    for(let i = 0; i < taskDots.length; i++){
+        const urgencyType = taskDots[i].className.slice(-1);
+
+        /* Low Urgency */
+        if(urgencyType === 'L'){
+            taskDots[i].style.backgroundColor = green[1];
+        }
+        /* Medium Urgency */
+        else if(urgencyType === 'M'){
+            taskDots[i].style.backgroundColor = yellow[1];
+        }
+        /* High Urgency */
+        else if(urgencyType === 'H'){
+            taskDots[i].style.backgroundColor = red[1];
+        }
+    }
 });
 
 /*
@@ -78,4 +102,4 @@ function getElementStyle(element, style){
     const propertyValue = compStyles.getPropertyValue(style);
 
     return propertyValue;
-}
+}``

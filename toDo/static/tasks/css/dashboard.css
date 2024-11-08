@@ -24,8 +24,9 @@ main{
     list-style: none;
 }
 
-.link{
+.link, #sign-out-btn{
     padding: .5rem 0;
+    text-transform: capitalize;
 }
 
 .link a{
@@ -41,7 +42,7 @@ main{
     color: inherit;
 }
 
-.scheduled, #sign-out-btn{
+.scheduled, .completed, #sign-out-btn{
     font-weight: 600;
 }
 
@@ -57,11 +58,21 @@ main{
     text-align: center;
 }
 
-#error{
-    margin-bottom: 1rem;
+#errors-container
+{
+    height: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.errorlist{
+    display: block;
+    padding: 0;
     font-size: 1rem;
     color: var(--error-color);
-    height: .5rem;
+    list-style-type: none;
+    font-weight: 550;
 }
 
 #next-task{
@@ -71,7 +82,7 @@ main{
     height: 3.5rem;
     border-radius: 1rem;
     background-color: var(--white-color);
-    margin-bottom: 2rem;
+    margin: 2rem 0;
     padding: .3rem;
 }
 
@@ -88,7 +99,6 @@ main{
 .dot:nth-of-type(2){
     margin: 0 .3rem;
 }
-
 
 .dot{
     display: block;
@@ -118,27 +128,37 @@ main{
     background-color: transparent;
     font-size: 1.5rem;
     cursor: pointer;
+    height: 3.5rem;
 }
 
 #task-list{
     width: 80%;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-transform: capitalize;
 }
 
 .task{
     display: flex;
     align-items: center;
     width: 80%;
-    height: 3rem;
+    min-height: 3rem;
     background-color: var(--white-color);
     border-radius: 1rem;
     padding: .3rem;
+    margin: .5rem 0;
 }
 
 .task-title{
     width: 80%;
     margin-left: 1rem;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .completion-time{
@@ -146,3 +166,20 @@ main{
     margin: 0 .3rem;
 }
 
+.completion{
+    width: 5%;
+    margin: 0 .5rem;
+}
+
+.delete{
+    margin: 0 .25rem;
+}
+
+.delete input[type="submit"]{
+    border: none;
+    background-color: transparent;
+    font-weight: 600;
+    color: var(--error-color);
+    font-size: 1rem;
+    cursor: pointer;
+}
