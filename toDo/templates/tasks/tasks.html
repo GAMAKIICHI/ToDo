@@ -1,0 +1,32 @@
+
+{% if tasks %}
+    {% for task in tasks %}
+        <div class="task">
+            <div class="urgency">
+                <span class="dot dot-{{task.urgency}}"></span>
+            </div>
+            <div class="task-title">
+                <p>{{task.title}}</p>
+            </div>
+            <div class="completion-time">
+                <p>{{task.deadline|date:"m/d | H:i A"}}</p>
+            </div>
+            <form class="completion" method="post">
+                {%csrf_token%}
+                <input type="checkbox" id="checkbox-{{task.id}}" name="complete_task" value="{{task.id}}" data-completion="{{task.completion_status}}" onchange="this.form.submit()"/>
+                <label for="checkbox-{{task.id}}"></label>
+            </form>
+            <form class="delete" method="post">
+                {%csrf_token%}
+                <input type="hidden" id="delete-{{task.id}}" name="delete_task" value="{{task.id}}">
+                <input type="submit" id="delete-btn-{{task.id}}" value="X"> 
+            </form>
+        </div>
+    {% endfor %}
+{% else %}
+    <div class="task no-tasks">
+        <div class="task-title">
+            <p>No Tasks Are available</p>
+        </div>
+    </div>
+{% endif %}
