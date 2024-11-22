@@ -1,0 +1,23 @@
+{% extends "base/dashboard_base.html" %}
+{% load static %}
+
+{% block morestyles%}
+<link rel="stylesheet" type="text/css" href="{% static 'tasks/css/completed.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'tasks/css/tasks.css'%}">
+<script type="text/javascript" src="{% static 'tasks/js/urgencySelector.js'%}"></script>
+<script type="text/javascript" src="{% static 'tasks/js/completionStatus.js'%}"></script>
+{% endblock %}
+
+{% block right %}
+    <form action="{%url 'tasks:index'%}" id="return">
+        {%csrf_token%}
+        <input type="submit" id="return-btn" name="return-btn" value="&#10140;"/>
+    </form>
+    <div id="info-title">
+        <h1>Completed Tasks</h1>
+        <h2>{% now "M d Y"%}</h2>
+    </div>
+    <div id="task-list">
+        {% include "tasks/tasks.html" %}
+    </div>
+{% endblock %}

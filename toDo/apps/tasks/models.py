@@ -12,17 +12,6 @@ URGENCY_CHOICES = (
     ('H', "High")
 )
 
-# class min_length_validator(object):
-#     def __init__(self, length) -> None:
-#         self.length = length
-    
-#     def __call__(self, value):
-#         if len(str(value)) < self.length:
-#             raise ValidationError(
-#                 _("%(value)s length is too short."),
-#                 params={"value": value},
-#             )
-
 class TaskModel(models.Model):
     
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)

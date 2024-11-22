@@ -19,11 +19,20 @@ class Dot{
     }
 
     isChecked(){
+        if(!this.dot){
+            return;
+        }
+
         return this.dot.checked;
     }
 
     //toggles radio button and changes its background color to color1 with a 1px black border
     toggle(){
+
+        if(!this.dot){
+            return;
+        }
+
         this.dot.checked = true;
         this.dot.labels[0].style.backgroundColor = this.color1;
         this.dot.labels[0].style.border = "1px solid black";
@@ -31,6 +40,11 @@ class Dot{
 
     //untoggles radio button and changes its background color to color2 adn removes the border
     untoggle(){
+
+        if(!this.dot){
+            return;
+        }
+
         this.dot.checked = false;
         this.dot.labels[0].style.backgroundColor = this.color2;
         this.dot.labels[0].style.border = "none";
@@ -55,22 +69,27 @@ document.addEventListener("DOMContentLoaded", () =>{
     med.untoggle();
     high.untoggle();
 
-    dotToggleLow.addEventListener("change", () =>{
-        low.toggle();
-        med.untoggle();
-        high.untoggle();
-        
-    });
-    dotToggleMed.addEventListener("change", () =>{
-        low.untoggle();
-        med.toggle();
-        high.untoggle();
-    });
-    dotToggleHigh.addEventListener("change", () =>{
-        low.untoggle();
-        med.untoggle();
-        high.toggle();
-    });
+    if(dotToggleLow)
+        dotToggleLow.addEventListener("change", () =>{
+            low.toggle();
+            med.untoggle();
+            high.untoggle();
+            
+        });
+    
+    if(dotToggleMed)
+        dotToggleMed.addEventListener("change", () =>{
+            low.untoggle();
+            med.toggle();
+            high.untoggle();
+        });
+    
+    if(dotToggleHigh)
+        dotToggleHigh.addEventListener("change", () =>{
+            low.untoggle();
+            med.untoggle();
+            high.toggle();
+        });
 
     /*Changes the color of the tasks urgency*/
     const taskDots = document.querySelectorAll("span.dot");
